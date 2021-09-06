@@ -14,6 +14,13 @@ app.use(cors());
 // actual routes
 app.use("/api", authRoutes);
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-auth-token');
+  next();
+});
+
 //PORT
 const port = process.env.PORT || 5000;
 
